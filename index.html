@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Address Book</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="p-6">
+    <header class="mb-6">
+      <h1 class="text-2xl font-semibold">Contacts</h1>
+    </header>
+
+    <div class="flex justify-between items-center mb-4">
+      <div class="space-x-2">
+        <button class="border px-3 py-1 rounded" id="addBtn">+ New</button>
+        <button class="border px-3 py-1 rounded" id="editBtn" disabled>
+          Edit
+        </button>
+        <button class="border px-3 py-1 rounded" id="deleteBtn" disabled>
+          Delete
+        </button>
+      </div>
+      <div class="flex items-center space-x-2">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search..."
+          class="border px-3 py-1 rounded"
+        />
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full border">
+        <thead>
+          <tr class="border-b">
+            <th class="p-2 text-left">
+              <input
+                type="checkbox"
+                id="selectAll"
+                onclick="toggleSelectAll(this)"
+              />
+            </th>
+            <th class="p-2 text-left">Name</th>
+            <th class="p-2 text-left">Email</th>
+            <th class="p-2 text-left">Phone Number</th>
+            <th class="p-2 text-left">Location</th>
+          </tr>
+        </thead>
+        <tbody id="contactsTableBody">
+          <tr>
+            <td colspan="5" class="p-4 text-center text-gray-500 italic">
+              No contacts available
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <div
+      id="modal"
+      class="hidden fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center"
+    >
+      <div class="bg-white p-6 rounded-md w-96">
+        <h2 class="text-lg font-semibold mb-4" id="modalTitle">
+          Add New Contact
+        </h2>
+
+        <form id="addContactForm">
+          <div class="mb-4">
+            <label class="block text-sm">Name</label>
+            <input type="text" id="name" class="border p-2 w-full" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm">Email</label>
+            <input type="email" id="email" class="border p-2 w-full" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm">Phone Number</label>
+            <input type="text" id="phone" class="border p-2 w-full" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm">Location</label>
+            <input type="text" id="location" class="border p-2 w-full" />
+          </div>
+
+          <div class="flex justify-end space-x-2">
+            <button
+              type="submit"
+              id="submitBtn"
+              class="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Add Contact
+            </button>
+            <button
+              type="button"
+              onclick="closeModal()"
+              class="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/scripts.js"></script>
+  </body>
+</html>
