@@ -1,7 +1,6 @@
 let dataContacts = [];
 let selectedIds = [];
 
-/* ================= LOAD & SAVE ================= */
 function loadFromLocal() {
   const saved = localStorage.getItem("contacts");
   if (saved) {
@@ -10,16 +9,16 @@ function loadFromLocal() {
     dataContacts = [
       {
         id: 1,
-        fullName: "Haechan",
+        fullName: "Syahlana",
         phone: "62881080070700",
-        email: "haechan@example.com",
+        email: "Syahlana@example.com",
         location: "Bandung",
       },
       {
         id: 2,
-        fullName: "Keonho",
+        fullName: "Syahlana izhhar",
         phone: "62881080080800",
-        email: "keonho@example.com",
+        email: "Izhhar@example.com",
         location: "Jakarta",
       },
     ];
@@ -31,7 +30,6 @@ function saveToLocal() {
   localStorage.setItem("contacts", JSON.stringify(dataContacts));
 }
 
-/* ================= RENDER ================= */
 function displayContacts(list = dataContacts) {
   const tbody = document.getElementById("contactsTableBody");
   tbody.innerHTML = "";
@@ -65,7 +63,6 @@ function displayContacts(list = dataContacts) {
   updateSelectAllState();
 }
 
-/* ================= CRUD ================= */
 function getLastId() {
   if (dataContacts.length === 0) return 1;
   return Math.max(...dataContacts.map((c) => c.id)) + 1;
@@ -121,7 +118,7 @@ function updateContact() {
   };
 }
 
-/* ================= SEARCH ================= */
+/* SEARCH */
 function searchContacts(keyword) {
   const filtered = dataContacts.filter(
     (contact) =>
@@ -132,7 +129,7 @@ function searchContacts(keyword) {
   displayContacts(filtered);
 }
 
-/* ================= SELECTION ================= */
+/*  SELECTION  */
 function toggleSelection(checkbox) {
   const id = Number(checkbox.value);
 
@@ -180,12 +177,10 @@ function toggleButtons() {
   document.getElementById("deleteBtn").disabled = selectedIds.length === 0;
 }
 
-/* ================= MODAL ================= */
 function closeModal() {
   document.getElementById("modal").classList.add("hidden");
 }
 
-/* ================= EVENTS ================= */
 document.getElementById("addBtn").addEventListener("click", () => {
   document.getElementById("modal").classList.remove("hidden");
   document.getElementById("addContactForm").reset();
@@ -212,7 +207,6 @@ document
   .getElementById("searchInput")
   .addEventListener("input", (e) => searchContacts(e.target.value));
 
-/* ================= INIT ================= */
 loadFromLocal();
 displayContacts();
 toggleButtons();
